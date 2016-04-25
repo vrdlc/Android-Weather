@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.epicodus.weatherapp.R;
 import com.epicodus.weatherapp.models.Forecast;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -59,8 +60,8 @@ public class ForecastListAdapter extends RecyclerView.Adapter<ForecastListAdapte
 
         public void bindForecast(Forecast forecast){
             mForecastDateView.setText(forecast.getDate());
-            mForecastTemperatureView.setText(forecast.getLowTemp() + "/" + forecast.getHighTemp());
-
+            mForecastTemperatureView.setText(forecast.getLowTemp() + "/" + forecast.getHighTemp() + "° F" );
+            Picasso.with(mViewContext).load(forecast.getIcon()).into(mWeatherIconView);
         }
     }
 
