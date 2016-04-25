@@ -39,7 +39,6 @@ public class WeatherService {
                 .url(url)
                 .build();
 
-        Log.v(TAG, "URL: " + request);
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
