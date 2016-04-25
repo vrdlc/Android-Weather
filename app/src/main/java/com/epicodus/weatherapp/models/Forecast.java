@@ -13,12 +13,12 @@ public class Forecast {
     private int mCityId;
     private String mCountry;
     private Date mDate; // JAVA DATE
-    private double mDayTemperature;
-    private double mMaxDayTemperature;
-    private double mMinDayTemperature;
-    private double mNightTemperature;
-    private double mEveningTemperature;
-    private double mMorningTemperature;
+    private int mDayTemperature;
+    private int mMaxDayTemperature;
+    private int mMinDayTemperature;
+    private int mNightTemperature;
+    private int mEveningTemperature;
+    private int mMorningTemperature;
     private double mPressure;
     private int mHumidity;
     private int mWeatherId;
@@ -31,7 +31,7 @@ public class Forecast {
     private double mRainPercentage;
     private double mSnowPercentage;
 
-    public Forecast(String cityName, int cityId, String country, long dateLong, double dayTemp, double maxTemp, double minTemp, double nightTemp, double eveTemp, double mornTemp, double pressure, int humidity, int weatherId, String weatherMain, String description, String icon,  double windSpeed, int windDirection, int clouds, double rainPercentage, double snowPercentage){
+    public Forecast(String cityName, int cityId, String country, long dateLong, int dayTemp, int maxTemp, int minTemp, int nightTemp, int eveTemp, int mornTemp, double pressure, int humidity, int weatherId, String weatherMain, String description, String icon,  double windSpeed, int windDirection, int clouds, double rainPercentage, double snowPercentage){
         this.mCityName = cityName;
         this.mCityId = cityId;
         this.mCountry = country;
@@ -67,11 +67,11 @@ public class Forecast {
         return DateFormat.getDateInstance().format(mDate);
     }
 
-    public double getHighTemp() {
+    public int getHighTemp() {
         return mMaxDayTemperature;
     }
 
-    public double getLowTemp() {
+    public int getLowTemp() {
         return mMinDayTemperature;
     }
 

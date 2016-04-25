@@ -3,11 +3,15 @@ package com.epicodus.weatherapp.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.epicodus.weatherapp.R;
+import com.epicodus.weatherapp.adapters.ForecastListAdapter;
 import com.epicodus.weatherapp.models.Forecast;
 import com.epicodus.weatherapp.services.WeatherService;
 
@@ -23,7 +27,9 @@ import okhttp3.Response;
 public class ForecastActivity extends AppCompatActivity {
     public static final String TAG = ForecastActivity.class.getSimpleName();
     public ArrayList<Forecast> mForecasts = new ArrayList<>();
-    @Bind(R.id.forecastListView) ListView mListView;
+    @Bind(R.id.forecastRecyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.tvCityName) TextView mTVCityName;
+    private ForecastListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,23 +58,12 @@ public class ForecastActivity extends AppCompatActivity {
                 ForecastActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
-                        String[] dailyForecast = new String[mForecasts.size()];
-                        for (int i = 0; i < dailyForecast.length; i++) {
-                            dailyForecast[i] = mForecasts.get(i).getName();
-                        }
-                        ArrayAdapter adapter = new ArrayAdapter(ForecastActivity.this, android.R.layout.simple_list_item_1, dailyForecast);
-                        mListView.setAdapter(adapter);
-
-                        for(Forecast forecast : mForecasts) {
-                            Log.d(TAG, "Name: " + forecast.getName());
-                            Log.d(TAG, "Country: " + forecast.getCountry());
-                            Log.d(TAG, "Date: " + forecast.getDate());
-                            Log.d(TAG, "High: " + forecast.getHighTemp());
-                            Log.d(TAG, "Low: " + forecast.getLowTemp());
-                            Log.d(TAG, forecast.getIcon());
-                        }
-
+                        mTVCityName.setText(mForecasts.get(0).getName() + ", " + mForecasts.get(0).getCountry());
+                        mAdapter = new ForecastListAdapter(getApplicationContext(), mForecasts);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ForecastActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
                     }
 
                 });
