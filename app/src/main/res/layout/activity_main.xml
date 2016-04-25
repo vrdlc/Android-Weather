@@ -11,9 +11,11 @@
     tools:context=".ui.MainActivity">
 
     <TextView
-        android:text="Hello World!"
+        android:text="Weather App"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
         android:id="@+id/textView" />
 
     <EditText
