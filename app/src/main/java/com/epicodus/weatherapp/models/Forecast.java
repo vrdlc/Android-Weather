@@ -107,11 +107,11 @@ public class Forecast {
     }
 
     public String getRainDescription() {
-        return mRainAmount + " inches of rain expected";
+        return mRainAmount + " millimeters of rain expected";
     }
 
     public String getSnowDescription() {
-        return mSnowAmount + " inches of snow expected";
+        return mSnowAmount + " millimeters of snow expected";
     }
 
     public String getPressure(){
@@ -123,7 +123,48 @@ public class Forecast {
     }
 
     public String getWindDescription(){
-        return "Wind at " + mWindSpeed + " somethings from " + mWindDirection; // refactor when we know units and direction - ie nne
+        Double speed = mWindSpeed / 0.44704;
+        String speedFormatted = String.format("%.2f%n", speed);
+        return "Wind at " + speedFormatted + " mph from " + getWindCompassDirection(mWindDirection);
+    }
+
+    public static String getWindCompassDirection(int windDirection){
+        String direction = "";
+        if(windDirection <= 11 || windDirection >= 349){
+            direction = "N";
+        } else if (windDirection <= 33) {
+            direction = "NNE";
+        } else if (windDirection <= 56){
+            direction = "NE";
+        } else if (windDirection <= 78){
+            direction = "ENE";
+        } else if (windDirection <= 101){
+            direction = "E";
+        } else if (windDirection <= 123){
+            direction = "ESE";
+        } else if (windDirection <= 146){
+            direction = "SE";
+        } else if (windDirection <= 168){
+            direction = "SSE";
+        } else if (windDirection <= 191){
+            direction = "S";
+        } else if (windDirection <= 213){
+            direction = "SSW";
+        } else if (windDirection <= 236){
+            direction = "SW";
+        } else if (windDirection <= 258){
+            direction = "WSW";
+        } else if (windDirection <= 281){
+            direction = "W";
+        } else if (windDirection <= 303){
+            direction = "WNW";
+        } else if (windDirection <= 326){
+            direction = "NW";
+        } else if (windDirection <= 348){
+            direction = "NNW";
+        }
+
+        return direction;
     }
 
 }
