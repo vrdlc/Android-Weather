@@ -33,12 +33,14 @@ public class Forecast {
     public int mCloudPercentage;
     public double mRainAmount;
     public double mSnowAmount;
+    public double mLatitude;
+    public double mLongitude;
 
     public Forecast(){
 
     }
 
-    public Forecast(String cityName, int cityId, String country, long dateLong, int dayTemp, int maxTemp, int minTemp, int nightTemp, int eveTemp, int mornTemp, double pressure, int humidity, int weatherId, String weatherMain, String description, String icon,  double windSpeed, int windDirection, int clouds, double rainAmount, double snowAmount){
+    public Forecast(String cityName, int cityId, String country, long dateLong, int dayTemp, int maxTemp, int minTemp, int nightTemp, int eveTemp, int mornTemp, double pressure, int humidity, int weatherId, String weatherMain, String description, String icon,  double windSpeed, int windDirection, int clouds, double rainAmount, double snowAmount, double latitude, double longitude){
         this.mCityName = cityName;
         this.mCityId = cityId;
         this.mCountry = country;
@@ -60,6 +62,8 @@ public class Forecast {
         this.mCloudPercentage = clouds;
         this.mRainAmount = rainAmount;
         this.mSnowAmount = snowAmount;
+        this.mLongitude = longitude;
+        this.mLatitude = latitude;
     }
 
     public String getName(){

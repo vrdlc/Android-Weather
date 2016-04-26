@@ -52,6 +52,8 @@ public class WeatherService {
                 JSONArray forecastsJSON = weatherJSON.getJSONArray("list");
                 String city = weatherJSON.getJSONObject("city").getString("name");
                 String country = weatherJSON.getJSONObject("city").getString("country");
+                double lon = weatherJSON.getJSONObject("city").getJSONObject("coord").getDouble("lon");
+                double lat = weatherJSON.getJSONObject("city").getJSONObject("coord").getDouble("lat");
                 int cityId = weatherJSON.getJSONObject("city").getInt("id");
                 for (int i = 0; i < forecastsJSON.length(); i++){
                     JSONObject dayJSON = forecastsJSON.getJSONObject(i);
@@ -74,7 +76,7 @@ public class WeatherService {
                     double rainPercentage = dayJSON.optDouble("rain", 0);
                     double snowPercentage = dayJSON.optDouble("snow", 0);
 
-                    Forecast forecast = new Forecast(city, cityId, country, dateLong, dayTemp, maxTemp, minTemp, nightTemp, eveTemp, mornTemp, pressure, humidity, weatherId, weatherMain, description, icon, windSpeed, windDirection,  clouds, rainPercentage, snowPercentage);
+                    Forecast forecast = new Forecast(city, cityId, country, dateLong, dayTemp, maxTemp, minTemp, nightTemp, eveTemp, mornTemp, pressure, humidity, weatherId, weatherMain, description, icon, windSpeed, windDirection,  clouds, rainPercentage, snowPercentage, lat, lon);
                     forecasts.add(forecast);
                 }
 
