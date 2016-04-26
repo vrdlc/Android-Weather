@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.epicodus.weatherapp.R;
@@ -26,6 +28,7 @@ public class ForecastListActivity extends AppCompatActivity {
     public ArrayList<Forecast> mForecasts = new ArrayList<>();
     @Bind(R.id.forecastRecyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.tvCityName) TextView mTVCityName;
+    @Bind(R.id.buttonMap) Button mMapButton;
     private ForecastListAdapter mAdapter;
 
     @Override
@@ -37,6 +40,18 @@ public class ForecastListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String city = intent.getStringExtra("city");
         getForecast(city);
+
+        mMapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                double lat = mForecasts.get(0).getLat();
+                double lon = mForecasts.get(0).getLon();
+                Intent intent = new Intent(ForecastListActivity.this, ForecastMapsActivity.class);
+                intent.putExtra("lat", lat);
+                intent.putExtra("lon", lon);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getForecast(String city) {
