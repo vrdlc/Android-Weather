@@ -2,12 +2,15 @@ package com.epicodus.weatherapp.models;
 
 
 
+import org.parceler.Parcel;
+
 import java.text.DateFormat;
 import java.util.Date;
 
 /**
  * Created by Guest on 4/25/16.
  */
+@Parcel
 public class Forecast {
     public String mCityName;
     public int mCityId;

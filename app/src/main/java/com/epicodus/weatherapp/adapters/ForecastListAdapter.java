@@ -54,12 +54,12 @@ public class ForecastListAdapter extends RecyclerView.Adapter<ForecastListAdapte
         @Bind(R.id.weatherIconImageView) ImageView mWeatherIconView;
         @Bind(R.id.forecastDateTextView) TextView mForecastDateView;
         @Bind(R.id.temperatureTextView) TextView mForecastTemperatureView;
-        private Context mViewContext;
+        private Context mContext;
 
         public ForecastViewHolder(View itemView){
             super(itemView);
+            mContext = itemView.getContext();
             ButterKnife.bind(this, itemView);
-            mViewContext = itemView.getContext();
             itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -68,6 +68,7 @@ public class ForecastListAdapter extends RecyclerView.Adapter<ForecastListAdapte
                     Intent intent = new Intent(mContext, ForecastDetailActivity.class);
                     intent.putExtra("position", itemPosition + "");
                     intent.putExtra("forecasts", Parcels.wrap(mForecasts));
+                    mContext.startActivity(intent);
                 }
             });
         }
@@ -75,7 +76,7 @@ public class ForecastListAdapter extends RecyclerView.Adapter<ForecastListAdapte
         public void bindForecast(Forecast forecast){
             mForecastDateView.setText(forecast.getDate());
             mForecastTemperatureView.setText(forecast.getTempRange());
-            Picasso.with(mViewContext).load(forecast.getIcon()).into(mWeatherIconView);
+            Picasso.with(mContext).load(forecast.getIcon()).into(mWeatherIconView);
         }
     }
 
