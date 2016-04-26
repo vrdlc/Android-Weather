@@ -48,7 +48,7 @@ public class ForecastMapsActivity extends FragmentActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        int ZOOM_LEVEL = 14;
+        int ZOOM_LEVEL = 13;
 
         LatLng weatherPlace = new LatLng(mLatitude, mLongitude);
         // Add a marker in Sydney and move the camera
