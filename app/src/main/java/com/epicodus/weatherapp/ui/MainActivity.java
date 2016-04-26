@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.cityButton:
                 String city = mCityEditText.getText().toString();
-                Intent intent = new Intent(MainActivity.this, ForecastActivity.class);
+                Intent intent = new Intent(MainActivity.this, ForecastListActivity.class);
                 intent.putExtra("city", city);
                 startActivity(intent);
                 break;

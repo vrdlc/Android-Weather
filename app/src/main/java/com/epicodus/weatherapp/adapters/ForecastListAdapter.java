@@ -60,7 +60,7 @@ public class ForecastListAdapter extends RecyclerView.Adapter<ForecastListAdapte
 
         public void bindForecast(Forecast forecast){
             mForecastDateView.setText(forecast.getDate());
-            mForecastTemperatureView.setText(forecast.getLowTemp() + "/" + forecast.getHighTemp() + "° F" );
+            mForecastTemperatureView.setText(forecast.getLowTemp() + "° F/" + forecast.getHighTemp() + "° F" );
             Picasso.with(mViewContext).load(forecast.getIcon()).into(mWeatherIconView);
         }
     }

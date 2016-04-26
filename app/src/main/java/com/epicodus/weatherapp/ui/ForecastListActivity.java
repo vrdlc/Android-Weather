@@ -5,9 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.epicodus.weatherapp.R;
@@ -24,8 +21,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class ForecastActivity extends AppCompatActivity {
-    public static final String TAG = ForecastActivity.class.getSimpleName();
+public class ForecastListActivity extends AppCompatActivity {
+    public static final String TAG = ForecastListActivity.class.getSimpleName();
     public ArrayList<Forecast> mForecasts = new ArrayList<>();
     @Bind(R.id.forecastRecyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.tvCityName) TextView mTVCityName;
@@ -55,13 +52,13 @@ public class ForecastActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 mForecasts = weatherService.processResults(response);
 
-                ForecastActivity.this.runOnUiThread(new Runnable() {
+                ForecastListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mTVCityName.setText(mForecasts.get(0).getName() + ", " + mForecasts.get(0).getCountry());
                         mAdapter = new ForecastListAdapter(getApplicationContext(), mForecasts);
                         mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ForecastActivity.this);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ForecastListActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }
