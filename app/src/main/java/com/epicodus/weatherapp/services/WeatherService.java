@@ -38,7 +38,7 @@ public class WeatherService {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-
+        Log.v(TAG, "url: " + request);
         Call call = client.newCall(request);
         call.enqueue(callback);
     }

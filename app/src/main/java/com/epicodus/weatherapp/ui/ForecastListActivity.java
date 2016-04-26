@@ -55,7 +55,7 @@ public class ForecastListActivity extends AppCompatActivity {
                 ForecastListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mTVCityName.setText(mForecasts.get(0).getName() + ", " + mForecasts.get(0).getCountry());
+                        mTVCityName.setText(mForecasts.get(0).getLocation());
                         mAdapter = new ForecastListAdapter(getApplicationContext(), mForecasts);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ForecastListActivity.this);

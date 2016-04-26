@@ -9,29 +9,33 @@ import java.util.Date;
  * Created by Guest on 4/25/16.
  */
 public class Forecast {
-    private String mCityName;
-    private int mCityId;
-    private String mCountry;
-    private Date mDate; // JAVA DATE
-    private int mDayTemperature;
-    private int mMaxDayTemperature;
-    private int mMinDayTemperature;
-    private int mNightTemperature;
-    private int mEveningTemperature;
-    private int mMorningTemperature;
-    private double mPressure;
-    private int mHumidity;
-    private int mWeatherId;
-    private String mWeatherMain;
-    private String mDescription;
-    private String mIconUrl;
-    private double mWindSpeed;
-    private int mWindDirection;
-    private int mCloudPercentage;
-    private double mRainPercentage;
-    private double mSnowPercentage;
+    public String mCityName;
+    public int mCityId;
+    public String mCountry;
+    public Date mDate; // JAVA DATE
+    public int mDayTemperature;
+    public int mMaxDayTemperature;
+    public int mMinDayTemperature;
+    public int mNightTemperature;
+    public int mEveningTemperature;
+    public int mMorningTemperature;
+    public double mPressure;
+    public int mHumidity;
+    public int mWeatherId;
+    public String mWeatherMain;
+    public String mDescription;
+    public String mIconUrl;
+    public double mWindSpeed;
+    public int mWindDirection;
+    public int mCloudPercentage;
+    public double mRainAmount;
+    public double mSnowAmount;
 
-    public Forecast(String cityName, int cityId, String country, long dateLong, int dayTemp, int maxTemp, int minTemp, int nightTemp, int eveTemp, int mornTemp, double pressure, int humidity, int weatherId, String weatherMain, String description, String icon,  double windSpeed, int windDirection, int clouds, double rainPercentage, double snowPercentage){
+    public Forecast(){
+
+    }
+
+    public Forecast(String cityName, int cityId, String country, long dateLong, int dayTemp, int maxTemp, int minTemp, int nightTemp, int eveTemp, int mornTemp, double pressure, int humidity, int weatherId, String weatherMain, String description, String icon,  double windSpeed, int windDirection, int clouds, double rainAmount, double snowAmount){
         this.mCityName = cityName;
         this.mCityId = cityId;
         this.mCountry = country;
@@ -51,12 +55,20 @@ public class Forecast {
         this.mWindSpeed = windSpeed;
         this.mWindDirection = windDirection;
         this.mCloudPercentage = clouds;
-        this.mRainPercentage = rainPercentage;
-        this.mSnowPercentage = snowPercentage;
+        this.mRainAmount = rainAmount;
+        this.mSnowAmount = snowAmount;
     }
 
     public String getName(){
         return mCityName;
+    }
+
+    public String getLocation(){
+        return mCityName + ", " + mCountry;
+    }
+
+    public String getTempRange(){
+        return mMinDayTemperature + "° F/" + mMaxDayTemperature + "° F";
     }
 
     public String getCountry() {
@@ -76,7 +88,7 @@ public class Forecast {
     }
 
     public String getHumidity() {
-        return mHumidity + "%";
+        return mHumidity + "% humidity";
     }
 
     public String getWeatherMain() {
@@ -84,10 +96,31 @@ public class Forecast {
     }
 
     public String getDescription () {
-        return mDescription;
+        return "The weather is expected to include " + mDescription;
     }
 
     public String getIcon() {
         return mIconUrl;
     }
+
+    public String getRainDescription() {
+        return mRainAmount + " inches of rain expected";
+    }
+
+    public String getSnowDescription() {
+        return mSnowAmount + " inches of snow expected";
+    }
+
+    public String getPressure(){
+        return mPressure + " millibars of pressure";
+    }
+
+    public String getCloudPercentage(){
+        return mCloudPercentage + "% cloud cover";
+    }
+
+    public String getWindDescription(){
+        return "Wind at " + mWindSpeed + " somethings from " + mWindDirection; // refactor when we know units and direction - ie nne
+    }
+
 }
