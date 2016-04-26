@@ -46,9 +46,11 @@ public class ForecastListActivity extends AppCompatActivity {
             public void onClick(View v){
                 double lat = mForecasts.get(0).getLat();
                 double lon = mForecasts.get(0).getLon();
+                String cityName = mForecasts.get(0).getName();
                 Intent intent = new Intent(ForecastListActivity.this, ForecastMapsActivity.class);
                 intent.putExtra("lat", lat);
                 intent.putExtra("lon", lon);
+                intent.putExtra("cityName", cityName);
                 startActivity(intent);
             }
         });

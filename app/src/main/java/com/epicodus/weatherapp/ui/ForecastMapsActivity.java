@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class ForecastMapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private double mLatitude;
     private double mLongitude;
+    private String mCityName;
     private GoogleMap mMap;
 
     @Override
@@ -25,6 +26,7 @@ public class ForecastMapsActivity extends FragmentActivity implements OnMapReady
         Intent intent = getIntent();
         mLatitude = intent.getDoubleExtra("lat", 0.00);
         mLongitude = intent.getDoubleExtra("lon", 0.00);
+        mCityName = intent.getStringExtra("cityName");
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -46,13 +48,14 @@ public class ForecastMapsActivity extends FragmentActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        int ZOOM_LEVEL = 14;
 
         LatLng weatherPlace = new LatLng(mLatitude, mLongitude);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.addMarker(new MarkerOptions().position(weatherPlace).title("Forecast City"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(weatherPlace));
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.addMarker(new MarkerOptions().position(weatherPlace).title(mCityName));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(weatherPlace, ZOOM_LEVEL));
     }
 }
