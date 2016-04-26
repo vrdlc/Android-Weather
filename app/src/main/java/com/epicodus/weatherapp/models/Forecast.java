@@ -66,6 +66,14 @@ public class Forecast {
         this.mLatitude = latitude;
     }
 
+    public double getLat() {
+        return mLatitude;
+    }
+
+    public double getLon() {
+        return mLongitude;
+    }
+
     public String getName(){
         return mCityName;
     }

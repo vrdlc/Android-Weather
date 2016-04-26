@@ -34,7 +34,7 @@
         <activity android:name=".ui.ForecastDetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.weatherapp.ui.ForecastListActivity" />
+                android:value="com.epicodus.weatherapp.ui.MainActivity" />
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -44,7 +44,11 @@ public class ForecastListActivity extends AppCompatActivity {
         mMapButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                double lat = mForecasts.get(0).getLat();
+                double lon = mForecasts.get(0).getLon();
                 Intent intent = new Intent(ForecastListActivity.this, ForecastMapsActivity.class);
+                intent.putExtra("lat", lat);
+                intent.putExtra("lon", lon);
                 startActivity(intent);
             }
         });

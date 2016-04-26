@@ -1,5 +1,6 @@
 package com.epicodus.weatherapp.ui;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -12,13 +13,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class ForecastMapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    private double mLatitude;
+    private double mLongitude;
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast_maps);
+
+        Intent intent = getIntent();
+        mLatitude = intent.getDoubleExtra("lat", 0.00);
+        mLongitude = intent.getDoubleExtra("lon", 0.00);
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -39,9 +47,12 @@ public class ForecastMapsActivity extends FragmentActivity implements OnMapReady
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        LatLng weatherPlace = new LatLng(mLatitude, mLongitude);
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.addMarker(new MarkerOptions().position(weatherPlace).title("Forecast City"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(weatherPlace));
     }
 }
