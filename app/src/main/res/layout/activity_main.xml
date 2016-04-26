@@ -24,19 +24,34 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cityEditText"
+        android:layout_marginTop="160dp"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="124dp" />
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/cityButton"
-        android:layout_below="@+id/cityEditText"
-        android:layout_centerHorizontal="true"
         android:background="@color/colorPrimaryLight"
         android:textColor="@color/colorTextIcons"
         android:textStyle="bold"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_below="@+id/cityEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter City Name:"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
 </RelativeLayout>
